@@ -1,0 +1,20 @@
+[project]
+dependencies = [
+    'requirements-parser',
+    'aiohttp',
+    'pyyaml',
+    'toml',
+    'rich',
+]
+name = 'flatpak_gen'
+version = '24.0.0'
+readme = 'readme.md'
+requires-python = '>=3.11'
+classifiers = [
+    'License :: OSI Approved :: GNU Affero General Public License v3',
+]
+
+[tool.pyright]
+venvPath = '.'
+venv = '.venv'
+
