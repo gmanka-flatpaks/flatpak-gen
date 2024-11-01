@@ -1,10 +1,8 @@
 [project]
 dependencies = [
-    'requirements-parser',
-    'aiohttp',
-    'pyyaml',
-    'toml',
-    'rich',
+    'flatpak_cargo_generator',
+    'flatpak_node_generator',
+    'flatpak_pip_generator',
 ]
 name = 'flatpak_gen'
 version = '24.0.0'

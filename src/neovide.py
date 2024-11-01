@@ -5,7 +5,7 @@ __license__ = "LGPL-3.0"
 
 
 import asyncio
-from generators.main import pip, cargo
+from generators import pip, cargo
 
 
 async def main():
@@ -13,6 +13,10 @@ async def main():
         cargo(
             write_path='neovide-cargo-sources.yml',
             cargo_lock_url='https://raw.githubusercontent.com/neovide/neovide/9c23c432b8105f39d9e9ddc2732d3350a0323cc9/Cargo.lock',
+        ),
+        cargo(
+            write_path='ripgrep-cargo-sources.yml',
+            cargo_lock_url='https://raw.githubusercontent.com/BurntSushi/ripgrep/4649aa9700619f94cf9c66876e9549d83420e16c/Cargo.lock',
         ),
         pip(
             write_path='python3-pynvim',

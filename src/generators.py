@@ -4,7 +4,7 @@
 __license__ = "LGPL-3.0"
 
 from pathlib import Path
-import generators.flatpak_cargo_generator
+import flatpak_cargo_generator.script
 import tomllib
 import asyncio
 import aiohttp
@@ -14,10 +14,9 @@ import sys
 
 class path:
     file = Path(__file__)
-    repo = Path(__file__).parent.parent.parent.resolve()
+    repo = Path(__file__).parent.parent.resolve()
     ouptut = repo / 'output'
     generators_src = file.parent.resolve()
-    flatpak_pip_generator = generators_src / 'flatpak_pip_generator.py'
 
 
 class pip:
@@ -37,7 +36,8 @@ class pip:
         print()
         commands = [
             sys.executable,
-            path.flatpak_pip_generator,
+            '-m',
+            'flatpak_pip_generator',
             '--yaml',
             '--checker-data',
             f'--output={self.write_path}',
@@ -94,7 +94,7 @@ class cargo:
         else:
             raise ValueError('please set cargo_lock_file or cargo_lock_url')
         lock_dict: dict = tomllib.loads(cargo_lock_data)
-        data = await generators.flatpak_cargo_generator.generate_sources(
+        data = await flatpak_cargo_generator.script.generate_sources(
                 cargo_lock=lock_dict,
         )
         with open(self.write_path, 'w') as fp:
